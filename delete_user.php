@@ -22,6 +22,17 @@
             );
             return $errors;
         endif;
+        if(!isset($_SESSION["connect"]) || $_SESSION["username"] !== $username):
+            $errors = array(
+                "code" => 26,
+                "message" => "User is not connected"
+            );
+            return $errors;
+        endif;
+        if(isset($_SESSION["connect"]) && $_SESSION["username"] == $username):
+            unset($_SESSION["connect"]);
+            unset($_SESSION["username"]);
+        endif;
         try {
             unlink("../passwords/".$username.".txt");
             return array(

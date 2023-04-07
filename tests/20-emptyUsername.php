@@ -1,30 +1,20 @@
 <?php
 include "../disconnect_user.php";
+include "../connect_user.php";
+include "../create_user.php";
 
-$randomizeUsername = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(20 / strlen($x)))), 1, 10);
+$user = "UsernameTest";
 
 // Create a temp user
-if (
-    file_exists("./../passwords/" . $randomizeUsername . ".txt")
-    && filesize("./../passwords/" . $randomizeUsername . ".txt") > 0
-) :
-    $errors = array(
-        "code" => 6,
-        "message" => "Username already exists"
-    );
-    return $errors;
-endif;
-$stream = fopen("./../passwords/" . $randomizeUsername . ".txt", "w");
-fwrite($stream, 'tempPassword');
-fclose($stream);
+create_user($user, "Passwordlenght2&test");
 
 // Create a temp session
-$_SESSION["connect"] = 42;
+connect_user($user, "Passwordlenght2&test");
 
 // Test
 $res1 = disconnect_user("");
-$res2 = disconnect_user($randomizeUsername);
+$res2 = disconnect_user($user);
 
-$res1["code"] == 20 && $res2["code"] == 0
+$res1["code"] == 20 && $res2["code"] == 0 && !isset($_SESSION["connect"]) && !isset($_SESSION["username"]) && !isset($errors)
     ? printf("true")
     : printf("false");

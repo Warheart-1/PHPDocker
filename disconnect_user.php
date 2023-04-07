@@ -22,8 +22,17 @@
             );
             return $errors;
         endif;
+        if(!isset($_SESSION["connect"]) || $_SESSION["username"] != $username):
+            $errors = array(
+                "code" => 26,
+                "message" => "User is not connected"
+            );
+            return $errors;
+        endif;
         try {
             unset($_SESSION["connect"]);
+            unset($_SESSION["username"]);
+            session_destroy();
             return array(
                 "code" => 0,
                 "message" => "User disconnected"

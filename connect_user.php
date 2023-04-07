@@ -25,9 +25,9 @@
                 );
                 return $errors;
             endif;
+            session_start();
             $_SESSION["connect"] = 42;
             $_SESSION["username"] = $username;
-
             return array(
                 "code" => 0,
                 "message" => "User connected"
