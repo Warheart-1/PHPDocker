@@ -1,5 +1,4 @@
 for ELEMENT in *.php
 do
-    php $ELEMENT
-    echo "\n"
+    echo "Test $ELEMENT: $(php $ELEMENT)"
 done

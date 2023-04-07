@@ -1,13 +1,13 @@
 <?php
     function change_old_password(string $username, string $oldpassword, string $newpassword) {
-        if(!file_exists("../passwords/".$username.".txt")):
+        if(!file_exists("../passwords/".$username.".txt") && $username !== ""):
             $errors = array(
                 "code" => 7,
                 "message" => "Username does not exist"
             );
             return $errors;
         endif;
-        if($oldpassword == "" || $newpassword == ""):
+        if($oldpassword == "" || $newpassword == "" || $username == ""):
             $errors = array(
                 "code" => 8,
                 "message" => "Please fill in all fields"
