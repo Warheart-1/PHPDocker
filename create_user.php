@@ -10,19 +10,19 @@
             );
             return $errors;
         endif;
-        if(strlen($password) < 8 || strlen($password) > 60):
-            $errors = array(
-                "code" => 2,
-                "message" => "Password must be between 8 and 60 characters"
-            );
-            return $errors; 
-        endif;
         if(strlen($name) < 3 || strlen($name) > 20):
             $errors = array(
-                "code" => 3,
+                "code" => 2,
                 "message" => "Username must be between 3 and 20 characters"
             );
             return $errors;
+        endif;
+        if(strlen($password) < 8 || strlen($password) > 60):
+            $errors = array(
+                "code" => 3,
+                "message" => "Password must be between 8 and 60 characters"
+            );
+            return $errors; 
         endif;
         $patternName = "/^([A-Za-z0-9]){3,20}$/"; 
         if(!preg_match($patternName, $name)) :
