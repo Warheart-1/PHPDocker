@@ -1,32 +1,16 @@
 <?php
     function connect_user(string $username, string $password) {
-        if(!file_exists("../passwords/".$username.".txt")):
+        if(!file_exists("../passwords/".$username.".txt") && $username != "" && $password != ""):
             $errors = array(
-                "code" => 14,
+                "code" => 13,
                 "message" => "Username does not exist"
             );
             return $errors;
         endif;
         if($password == "" || $username == ""):
             $errors = array(
-                "code" => 15,
+                "code" => 14,
                 "message" => "Please fill in all fields"
-            );
-            return $errors;
-        endif;
-        $patern = "/^([A-Za-z0-9]){3,20}$/";
-        if(!preg_match($patern, $username)):
-            $errors = array(
-                "code" => 16,
-                "message" => "Username must contain only letters and numbers"
-            );
-            return $errors;
-        endif;
-        $patern = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,60}$/";
-        if(!preg_match($patern, $password)):
-            $errors = array(
-                "code" => 17,
-                "message" => "Password must contain at least one uppercase letter, one lowercase letter, one number, one special character and be between 8 and 60 characters"
             );
             return $errors;
         endif;
@@ -36,12 +20,14 @@
             fclose($stream);
             if($password != $passwordFile):
                 $errors = array(
-                    "code" => 18,
+                    "code" => 15,
                     "message" => "Wrong password"
                 );
                 return $errors;
             endif;
             $_SESSION["connect"] = 42;
+            $_SESSION["username"] = $username;
+
             return array(
                 "code" => 0,
                 "message" => "User connected"
