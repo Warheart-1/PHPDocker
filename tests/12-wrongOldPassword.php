@@ -1,6 +1,6 @@
 <?php
-    include "./../change_old_password.php";
-
+    include "../lib.php";
+    
     $res1 = change_old_password("Username", "Passworefefzed2&", "Passwordlenght2&test");
     $res2 = change_old_password("Username", "Passwordlenght2&", "Passwordlenght2&test");
 

@@ -1,6 +1,6 @@
 <?php
     error_reporting(E_ERROR | E_PARSE);
-    include "../create_user.php";
+    include "../lib.php";
 
     array_map('unlink', array_filter(
         (array) array_merge(glob("./../passwords/*"))));

@@ -1,7 +1,6 @@
 <?php
-    include "./../connect_user.php";
-    include "./../create_user.php";
-
+    include "../lib.php";
+    
     create_user("Axel", "Passwordlenght2&test");
 
     $res1 = connect_user("", "");

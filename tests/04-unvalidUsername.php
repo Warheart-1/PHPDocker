@@ -1,6 +1,6 @@
 <?php
-    include "../create_user.php";
-
+    include "../lib.php";
+    
     $randomizeUsername = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(20 / strlen($x)))), 1, 10);
 
     $res1 = create_user("Userna,me", "PassWord&isL0nghEn0ugh");
