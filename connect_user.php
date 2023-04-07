@@ -42,7 +42,10 @@
                 return $errors;
             endif;
             $_SESSION["connect"] = 42;
-            return 0;
+            return array(
+                "code" => 0,
+                "message" => "User connected"
+            );
         } catch (Exception $e) {
             $errors = array(
                 "code" => 19,

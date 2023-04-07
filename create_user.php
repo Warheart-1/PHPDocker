@@ -52,7 +52,10 @@
             $stream = fopen("./../passwords/".$name.".txt", "w");
             fwrite($stream, $password);
             fclose($stream);
-            return 0;
+            return array(
+                "code" => 0,
+                "message" => "User created"
+            );
         } catch (Exception $e) {
             $errors = array(
                 "code" => 7,

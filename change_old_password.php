@@ -50,7 +50,10 @@
             $stream = fopen("./../passwords/".$username.".txt", "w");
             fwrite($stream, $newpassword);
             fclose($stream);
-            return 0;
+            return array(
+                "code" => 0,
+                "message" => "Password changed"
+            );
         } catch (Exception $e) {
             $errors = array(
                 "code" => 13,
