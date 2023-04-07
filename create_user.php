@@ -58,7 +58,7 @@
             );
         } catch (Exception $e) {
             $errors = array(
-                "code" => 7,
+                "code" => 400,
                 "message" => "An error occurred : " . $e->getMessage()
             );
             return $errors;
